@@ -1,0 +1,3 @@
+enum EPageRoute{
+  REGISTER_PAGE, PIZZA_MENU_PAGE
+}

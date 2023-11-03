@@ -1,0 +1,3 @@
+enum EInformation{
+  SUCCESS,ERROR
+}
