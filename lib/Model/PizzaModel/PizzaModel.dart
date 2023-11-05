@@ -61,15 +61,14 @@ class PizzaModel{
 
 class ChoosePizzaPastry{
   late String? pastryName;
-  @JsonKey(name : "default")
-  late bool? pastryDefault;
+  late bool? defaultPastry;
   late bool? status;
   late double? pastryPrice;
   late String? pastryIngredients;
 
   ChoosePizzaPastry(
       this.pastryName,
-      this.pastryDefault,
+      this.defaultPastry,
       this.status,
       this.pastryPrice,
       this.pastryIngredients
@@ -78,7 +77,7 @@ class ChoosePizzaPastry{
 
   Map<String, dynamic> toJson() => {
     "pastryName": pastryName,
-    "pastryDefault": pastryDefault,
+    "defaultPastry": defaultPastry,
     "status": status,
     "pastryPrice" : pastryPrice,
     "pastryIngredients" : pastryIngredients
@@ -87,7 +86,7 @@ class ChoosePizzaPastry{
 
   ChoosePizzaPastry.from(Map<String,dynamic> json) :
         pastryName = json["pastryName"],
-        pastryDefault = json["pastryDefault"],
+        defaultPastry = json["defaultPastry"],
         status = json["status"],
         pastryPrice = json["pastryPrice"],
         pastryIngredients = json["pastryIngredients"];
@@ -96,13 +95,12 @@ class ChoosePizzaPastry{
 class PizzaSize{
   late String? pizzaSize;
   late bool? status;
-  @JsonKey(name : "default")
-  late bool? sizeDefault;
+  late bool? defaultSize;
   late double? price;
   PizzaSize(
       this.pizzaSize,
       this.status,
-      this.sizeDefault,
+      this.defaultSize,
       this.price
   );
 
@@ -110,13 +108,13 @@ class PizzaSize{
   Map<String, dynamic> toJson() => {
     "pizzaSize": pizzaSize,
     "status": status,
-    "sizeDefault": sizeDefault,
+    "defaultSize": defaultSize,
     "price" : price
   };
 
   PizzaSize.from(Map<String,dynamic> json) :
         pizzaSize = json["pizzaSize"],
         status = json["status"],
-        sizeDefault = json["sizeDefault"],
+        defaultSize = json["defaultSize"],
         price = json["price"];
 }

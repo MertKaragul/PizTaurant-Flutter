@@ -2,9 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PizTElavatedButton extends StatefulWidget {
-  const PizTElavatedButton({super.key, required this.buttonText ,required this.onPressed});
+  const PizTElavatedButton({super.key,
+    required this.buttonText,
+    required this.textColor,
+    required this.containerColor,
+    required this.height,
+    required this.width,
+    required this.onPressed});
 
   final String buttonText;
+  final Color textColor;
+  final Color containerColor;
+  final double height;
+  final double width;
   final void Function() onPressed;
 
   @override
@@ -14,10 +24,9 @@ class PizTElavatedButton extends StatefulWidget {
 class _StatePizTElavatedButton extends State<PizTElavatedButton> {
   @override
   Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
-    var width = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: width * .9,
+      height: widget.height,
+      width: widget.width,
       child: ElevatedButton(
         onPressed: widget.onPressed,
         style: ButtonStyle(
@@ -27,12 +36,12 @@ class _StatePizTElavatedButton extends State<PizTElavatedButton> {
                   side: const BorderSide(color: Colors.transparent)
               )
           ),
-          backgroundColor: MaterialStateColor.resolveWith((states) => colorScheme.primaryContainer),
+          backgroundColor: MaterialStateColor.resolveWith((states) => widget.containerColor),
         ),
         child: Text(
           widget.buttonText,
           style: TextStyle(
-              color: colorScheme.primary,
+              color: widget.textColor,
           ),
         ),
       ),

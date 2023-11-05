@@ -19,13 +19,6 @@ class _RegisterPageState extends State<RegisterPage> {
   var email = "";
 
   @override
-  void initState() {
-    viewModel.open();
-    super.initState();
-  }
-
-
-  @override
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
     return SafeArea(
@@ -60,10 +53,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: "Password",
                 enabled: true,
                 errorText: "Lütfen şifrenizi giriniz",
-                onChange: (String value) { setState(() { email = value; }); },
+                onChange: (String value) { setState(() { password = value; }); },
               ),
 
-              PizTElavatedButton(buttonText: "Kayıt ol",onPressed: (){
+              PizTElavatedButton(
+                  height: 1,
+                  width: 1,
+                  containerColor: colorScheme.primaryContainer,
+                  textColor: colorScheme.primary,
+                  buttonText: "Kayıt ol",
+                  onPressed: (){
                 viewModel.registerUser(username, password, email, (information){
                   showDialog(
                     context: context,
@@ -72,7 +71,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           title : information.title,
                           description: information.description,
                           onConfirm: (){
-                            return TextButton(onPressed: () { Navigator.of(context).pop(); }, child: Text("Ok"),);
+                            return TextButton(onPressed: () {
+                              Navigator.of(context).pop();
+                            }, child: Text("Ok"),);
                           },
                           onDismiss:(){ return Text(""); });
                     },);
@@ -82,11 +83,5 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         )
     );
-  }
-
-  @override
-  void dispose() {
-    viewModel.close();
-    super.dispose();
   }
 }

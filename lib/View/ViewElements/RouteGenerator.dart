@@ -13,6 +13,8 @@ class RouteGenerator {
 
     if(routeName == EPageRoute.REGISTER_PAGE.name){
       return MaterialPageRoute(builder: (_) => RegisterPage());
+    }else if(routeName == EPageRoute.PIZZA_MENU_PAGE.name){
+      return MaterialPageRoute(builder: (_) => PizzaMenuPage());
     }else{
       return MaterialPageRoute(builder: (_) => HomePage());
     }

@@ -7,21 +7,14 @@ import 'package:piztaurantflutter/Service/Json/JsonService.dart';
 class PizzaMenuPageViewModel {
   final _jsonService = JsonService();
 
-  Future<List<PizzaModel>?> getPizza() async{
-    var data = [];
-    var json = <PizzaModel>[];
+  Future<List<PizzaModel>> getPizza() async{
     try{
-      data = await _jsonService.readJson("assets/pizza-data.json") as List<dynamic>;
+      var json = <PizzaModel>[];
+      var data = await _jsonService.readJson("assets/pizza-data.json") as List<dynamic>;
+      for (var element in data) { json.add(PizzaModel.fromJson(element)); }
+      return json;
     }catch(e){
-      data = [];
+      return [];
     }
-
-    if(data.isNotEmpty){
-      for (var element in data) {
-        //json.add(PizzaModel.fromJson(element));
-      }
-    }
-    return json;
   }
-
 }

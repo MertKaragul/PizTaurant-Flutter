@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:piztaurantflutter/Enums/EPageRoute.dart';
 import 'package:piztaurantflutter/Model/UserModel/UserModel.dart';
 import 'package:piztaurantflutter/Service/Database/GenericDatabase/DatabaseStrings.dart';
+import 'package:piztaurantflutter/Service/Database/UserDatabase/UserDatabase.dart';
 import 'package:piztaurantflutter/View/PizzaPage/PizzaMenuPage.dart';
 import 'package:piztaurantflutter/View/RegisterPage/RegisterPage.dart';
 import 'package:piztaurantflutter/View/Theme/Colors.dart';
@@ -13,7 +14,8 @@ Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(UserModelAdapter());
-  runApp(const MyApp());
+  await UserDatabase().open();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
