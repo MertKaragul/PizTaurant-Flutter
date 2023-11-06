@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:piztaurantflutter/Enums/EPageRoute.dart';
 import 'package:piztaurantflutter/View/HomePage/HomePage.dart';
-import 'package:piztaurantflutter/View/PizzaPage/PizzaMenuPage.dart';
+import 'package:piztaurantflutter/View/PizzaDetailPage/PizzaDetailPage.dart';
 import 'package:piztaurantflutter/View/RegisterPage/RegisterPage.dart';
 
 class RouteGenerator {
@@ -13,8 +13,8 @@ class RouteGenerator {
 
     if(routeName == EPageRoute.REGISTER_PAGE.name){
       return MaterialPageRoute(builder: (_) => RegisterPage());
-    }else if(routeName == EPageRoute.PIZZA_MENU_PAGE.name){
-      return MaterialPageRoute(builder: (_) => PizzaMenuPage());
+    }else if(routeName == EPageRoute.PIZZA_DETAIL_PAGE.name){
+      return MaterialPageRoute(builder: (context) => PizzaDetailPage(selectedPizza: args, colorScheme: Theme.of(context).colorScheme));
     }else{
       return MaterialPageRoute(builder: (_) => HomePage());
     }

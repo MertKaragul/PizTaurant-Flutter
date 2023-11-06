@@ -8,13 +8,22 @@ class PizTElavatedButton extends StatefulWidget {
     required this.containerColor,
     required this.height,
     required this.width,
-    required this.onPressed});
+    this.cornerBottomLeft = 5.0,
+    this.cornerBottomRight = 5.0,
+    this.cornerTopLeft = 5.0,
+    this.cornerTopRight = 5.0,
+    required this.onPressed
+  });
 
   final String buttonText;
   final Color textColor;
   final Color containerColor;
   final double height;
   final double width;
+  final double cornerBottomLeft;
+  final double cornerBottomRight;
+  final double cornerTopLeft;
+  final double cornerTopRight;
   final void Function() onPressed;
 
   @override
@@ -32,7 +41,7 @@ class _StatePizTElavatedButton extends State<PizTElavatedButton> {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(widget.cornerBottomLeft),bottomRight: Radius.circular(widget.cornerBottomRight), topLeft: Radius.circular(widget.cornerTopLeft),  topRight: Radius.circular(widget.cornerTopRight),),
                   side: const BorderSide(color: Colors.transparent)
               )
           ),

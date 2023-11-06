@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:piztaurantflutter/Enums/EInformation.dart';
+import 'package:piztaurantflutter/Enums/EPageRoute.dart';
 import 'package:piztaurantflutter/Model/InformationModel.dart';
 import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
 import 'package:piztaurantflutter/View/ErrorPage/PizzaError.dart';
 import 'package:piztaurantflutter/View/ViewElements/PizTElavatedButton.dart';
+import 'package:piztaurantflutter/View/ViewElements/RouteGenerator.dart';
 
 class ShowPizza extends StatefulWidget {
   const ShowPizza({super.key, required this.pizzaModel});
@@ -14,12 +16,6 @@ class ShowPizza extends StatefulWidget {
 }
 
 class _StateShowPizza extends State<ShowPizza> {
-
-  @override
-  void initState() {
-    widget.pizzaModel.first.choosePizzaPastry!.forEach((element) { print(element.defaultPastry) ; });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +62,7 @@ class _StateShowPizza extends State<ShowPizza> {
                         ? Text(pizzaPastry.singleWhere((element) => element.defaultPastry == true).pastryName ?? "", style: TextStyle( color: colorScheme.primary ))
                         : Text(""),
 
+                    SizedBox(height: heigth * .005),
 
                     PizTElavatedButton(
                       textColor: colorScheme.onPrimary,
@@ -74,7 +71,7 @@ class _StateShowPizza extends State<ShowPizza> {
                       width: width * .5,
                       buttonText: "Ekle",
                       onPressed: () {
-                        print("hello");
+                        RouteGenerator.route(context, EPageRoute.PIZZA_DETAIL_PAGE.name, listItem);
                       },)
                   ],
                 ),
