@@ -75,7 +75,7 @@
                 "pizzaSize" : "Küçük",
                 "status" : true,
                 "defaultSize" : true,
-                "price" : 10.0
+                "price" : 0.0
             },
             {
                 "pizzaSize" : "Orta",
@@ -121,7 +121,7 @@
                 "pizzaSize" : "Küçük",
                 "status" : true,
                 "defaultSize" : true,
-                "price" : 10.0
+                "price" : 0.0
             },
             {
                 "pizzaSize" : "Orta",
@@ -167,7 +167,7 @@
                 "pizzaSize" : "Küçük",
                 "status" : true,
                 "defaultSize" : true,
-                "price" : 10.0
+                "price" : 0.0
             },
             {
                 "pizzaSize" : "Orta",
@@ -213,7 +213,7 @@
                 "pizzaSize" : "Küçük",
                 "status" : true,
                 "defaultSize" : true,
-                "price" : 10.0
+                "price" : 0.0
             },
             {
                 "pizzaSize" : "Orta",
@@ -258,7 +258,7 @@
                 "pizzaSize" : "Küçük",
                 "status" : true,
                 "defaultSize" : true,
-                "price" : 10.0
+                "price" : 0.0
             },
             {
                 "pizzaSize" : "Orta",

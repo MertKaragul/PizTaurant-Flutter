@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:piztaurantflutter/Enums/EInformation.dart';
 import 'package:piztaurantflutter/Enums/EPageRoute.dart';
 import 'package:piztaurantflutter/Model/InformationModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModel/OrderPizzaModel.dart';
 import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
 import 'package:piztaurantflutter/View/ErrorPage/PizzaError.dart';
 import 'package:piztaurantflutter/View/ViewElements/PizTElavatedButton.dart';
@@ -71,7 +74,13 @@ class _StateShowPizza extends State<ShowPizza> {
                       width: width * .5,
                       buttonText: "Ekle",
                       onPressed: () {
-                        RouteGenerator.route(context, EPageRoute.PIZZA_DETAIL_PAGE.name, listItem);
+                        var orderPizzaModel = OrderPizzaModel(
+                          listItem,
+                          pizzaSize?.singleWhere((element) => element.defaultSize == true),
+                          pizzaPastry?.singleWhere((element) => element.defaultPastry == true),
+                          0.0
+                        );
+                        RouteGenerator.route(context, EPageRoute.PIZZA_DETAIL_PAGE.name, orderPizzaModel);
                       },)
                   ],
                 ),

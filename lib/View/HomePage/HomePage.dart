@@ -25,9 +25,7 @@ class _HomePageState extends State<HomePage> {
     return FutureBuilder(
       future: viewModel.checkUser(),
       builder: (context, snapshot) {
-        if(snapshot.hasError){
-          return PizzaError(informationModel: InformationModel("Hata", snapshot.error.toString() , EInformation.ERROR));
-        }if(snapshot.data == null){
+        if(snapshot.data == null && snapshot.hasData){
           return SafeArea(
               child: SizedBox(
                 width: width,
@@ -53,8 +51,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               )
           );
-        }else{
+        }else if(snapshot.data != null){
           return PizzaMenuPage();
+        }else{
+          return PizzaError(informationModel: InformationModel("Hata" , "" , EInformation.ERROR));
         }
       },
     );

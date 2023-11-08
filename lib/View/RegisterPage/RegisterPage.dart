@@ -21,6 +21,8 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
           body: Column(
@@ -57,8 +59,8 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
 
               PizTElavatedButton(
-                  height: 1,
-                  width: 1,
+                  height: height * .05 ,
+                  width: width * .9,
                   containerColor: colorScheme.primaryContainer,
                   textColor: colorScheme.primary,
                   buttonText: "Kayıt ol",
