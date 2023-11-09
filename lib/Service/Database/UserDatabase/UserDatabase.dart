@@ -44,7 +44,6 @@ class UserDatabase extends IDatabase<UserModel> {
   @override
   Future<List<UserModel>?> getAll() async {
     if(_userDatabase == null) throw Exception("Database cannot initialize");
-    print(_userDatabase?.values.toList());
     return _userDatabase?.values.toList();
   }
 

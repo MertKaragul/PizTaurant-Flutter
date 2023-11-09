@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     return FutureBuilder(
       future: viewModel.checkUser(),
       builder: (context, snapshot) {
-        if(snapshot.data == null && snapshot.hasData){
+        if(snapshot.data == null){
           return SafeArea(
               child: SizedBox(
                 width: width,

@@ -1,12 +1,18 @@
 import 'dart:async';
+import 'dart:convert';
 
-import 'package:piztaurantflutter/Model/PizzaModel/OrderPizzaModel.dart';
+import 'package:piztaurantflutter/Enums/EInformation.dart';
+import 'package:piztaurantflutter/Model/CartModel/OrderPizzaModel.dart';
+import 'package:piztaurantflutter/Model/InformationModel.dart';
 import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
+import 'package:piztaurantflutter/Service/Database/CartDatabase/CartDatabase.dart';
 
 class PizzaDetailPageViewModel{
   StreamController<OrderPizzaModel> streamController = StreamController();
 
-  OrderPizzaModel? _pizzaModel;
+  final CartDatabase _cartDatabase = CartDatabase();
+
+  OrderPizzaModel? pizzaModel;
   bool hideButton = true;
   double pizzaPrice = 0.0;
 
@@ -23,7 +29,7 @@ class PizzaDetailPageViewModel{
         pizzaPrice = convertPizzaModel.pizzaModel?.pizzaPrice ?? 0.0;
       }
 
-      _pizzaModel = convertPizzaModel;
+      pizzaModel = convertPizzaModel;
       streamController.add(convertPizzaModel);
       hideButton = false;
     }catch(e){
@@ -32,38 +38,59 @@ class PizzaDetailPageViewModel{
   }
 
   void updatePastry(ChoosePizzaPastry? choosePizzaPastry){
-    if(_pizzaModel == null) return;
+    if(pizzaModel == null) return;
     if(choosePizzaPastry == null) return;
 
-    if(_pizzaModel?.choosePizzaPastry != choosePizzaPastry){
-      var decreasePrice = (_pizzaModel?.price ?? 0.0) - (_pizzaModel?.choosePizzaPastry?.pastryPrice ?? 0.0);
-      _pizzaModel?.price = decreasePrice;
-      var newPrice = (_pizzaModel?.price ?? 0.0) + (choosePizzaPastry.pastryPrice ?? 0.0);
+    if(pizzaModel?.choosePizzaPastry != choosePizzaPastry){
+      var decreasePrice = (pizzaModel?.price ?? 0.0) - (pizzaModel?.choosePizzaPastry?.pastryPrice ?? 0.0);
+      pizzaModel?.price = decreasePrice;
+      var newPrice = (pizzaModel?.price ?? 0.0) + (choosePizzaPastry.pastryPrice ?? 0.0);
 
-      _pizzaModel?.price = newPrice;
-      _pizzaModel?.choosePizzaPastry = choosePizzaPastry;
+      pizzaModel?.price = newPrice;
+      pizzaModel?.choosePizzaPastry = choosePizzaPastry;
     }
 
-    streamController.sink.add(_pizzaModel!);
+    streamController.sink.add(pizzaModel!);
   }
 
   void updateSize(PizzaSize? pizzaSize){
-    if(_pizzaModel == null) return;
+    if(pizzaModel == null) return;
     if(pizzaSize ==  null) return;
 
-    if(_pizzaModel?.pizzaSize != pizzaSize){
+    if(pizzaModel?.pizzaSize != pizzaSize){
 
-      var getDefaultSizeInPizzaModel = _pizzaModel?.pizzaModel?.pizzaSize?.firstWhere((element) => element.defaultSize ?? false);
-      if(_pizzaModel?.pizzaSize != getDefaultSizeInPizzaModel){
-        var decreasePrice = (_pizzaModel?.price ?? 0.0) - (_pizzaModel?.pizzaSize?.price ?? 0.0);
-        _pizzaModel?.price = decreasePrice;
+      var getDefaultSizeInPizzaModel = pizzaModel?.pizzaModel?.pizzaSize?.firstWhere((element) => element.defaultSize ?? false);
+      if(pizzaModel?.pizzaSize != getDefaultSizeInPizzaModel){
+        var decreasePrice = (pizzaModel?.price ?? 0.0) - (pizzaModel?.pizzaSize?.price ?? 0.0);
+        pizzaModel?.price = decreasePrice;
       }
 
-      var newPrice = (_pizzaModel?.price ?? 0.0) + (pizzaSize.price ?? 0.0);
-      _pizzaModel?.price = newPrice;
-      _pizzaModel?.pizzaSize = pizzaSize;
+      var newPrice = (pizzaModel?.price ?? 0.0) + (pizzaSize.price ?? 0.0);
+      pizzaModel?.price = newPrice;
+      pizzaModel?.pizzaSize = pizzaSize;
     }
-    streamController.sink.add(_pizzaModel!);
+    streamController.sink.add(pizzaModel!);
+  }
+
+
+  void orderPizza(Function(InformationModel) information){
+    if(pizzaModel == null ) {
+      information(InformationModel("Hata", "Sipariş oluşturulurken bir hata meydana geldi \n PizzaModel cannot be empty", EInformation.ERROR));
+      return;
+    }
+
+    if(pizzaModel!.choosePizzaPastry == null || pizzaModel!.pizzaSize == null || pizzaModel!.price == null || pizzaModel!.price == 0.0 ) {
+      information(InformationModel("Hata", "Sipariş oluşturulurken bir hata meydana geldi \n PizzaModel cannot be empty", EInformation.ERROR));
+      return;
+    }
+
+    try{
+      _cartDatabase.insert(pizzaModel!);
+      information(InformationModel("Başarılı", "Siparişiniz oluşturuldu", EInformation.SUCCESS));
+    }catch(e){
+      information(InformationModel("Hata", e.toString(), EInformation.ERROR));
+    }
+
   }
 
 

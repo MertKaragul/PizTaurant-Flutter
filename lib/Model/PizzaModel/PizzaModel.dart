@@ -1,16 +1,29 @@
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
+part 'PizzaModel.g.dart';
 
 @JsonSerializable()
+@HiveType(typeId: 2)
 class PizzaModel{
+  @HiveType(typeId: 0)
   late int? id;
+  @HiveType(typeId: 1)
   late String? pizzaName;
+  @HiveType(typeId: 2)
   late String? pizzaIngredients;
+  @HiveType(typeId: 3)
   late double? pizzaPrice;
+  @HiveType(typeId: 4)
   late String? image;
-  late bool? status;
+  @HiveType(typeId: 5)
+  late bool? status ;
+  @HiveType(typeId: 6)
   late bool? discount;
+  @HiveType(typeId: 7)
   late double? discountPrice;
+  @HiveType(typeId: 8)
   late List<ChoosePizzaPastry>? choosePizzaPastry;
+  @HiveType(typeId: 9)
   late List<PizzaSize>? pizzaSize;
 
 
@@ -59,11 +72,17 @@ class PizzaModel{
          .toList();
 }
 
+@HiveType(typeId: 3)
 class ChoosePizzaPastry{
+  @HiveType(typeId: 0)
   late String? pastryName;
+  @HiveType(typeId: 1)
   late bool? defaultPastry;
+  @HiveType(typeId: 2)
   late bool? status;
+  @HiveType(typeId: 3)
   late double? pastryPrice;
+  @HiveType(typeId: 4)
   late String? pastryIngredients;
 
   ChoosePizzaPastry(
@@ -92,10 +111,15 @@ class ChoosePizzaPastry{
         pastryIngredients = json["pastryIngredients"];
 }
 
+@HiveType(typeId: 4)
 class PizzaSize{
+  @HiveType(typeId: 0)
   late String? pizzaSize;
+  @HiveType(typeId: 1)
   late bool? status;
+  @HiveType(typeId: 2)
   late bool? defaultSize;
+  @HiveType(typeId: 3)
   late double? price;
   PizzaSize(
       this.pizzaSize,
