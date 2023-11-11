@@ -23,37 +23,40 @@ class _PizzaMenuPageState extends State<PizzaMenuPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: FutureBuilder(
-          future: pizzaMenuPageViewModel.getPizza(),
-          builder: (context, snapshot) {
-            var getPizza = snapshot.data;
-            if(snapshot.connectionState  == ConnectionState.waiting){
-              return Center(child: CircularProgressIndicator());
-            }else if(snapshot.hasError){
-              return PizzaError(informationModel: InformationModel("Hata" , "Pizzaları getirirken bir hata ile karşılaştık \n ${snapshot.error}" , EInformation.ERROR));
-            } else if(getPizza == null || getPizza.isEmpty){
-              return PizzaError(informationModel: InformationModel("Hata" , "Pizzaları getirirken bir hata ile karşılaştık" , EInformation.ERROR));
-            }else{
-              var colorScheme = Theme.of(context).colorScheme;
-              return Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  ShowPizza(pizzaModel: getPizza),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: FloatingActionButton(
-                      backgroundColor: colorScheme.primary,
-                        onPressed: () => RouteGenerator.route(context,EPageRoute.CART_PAGE.name,[]),
-                        child: Icon(
-                          Icons.shopping_cart,
-                          color: colorScheme.onPrimary,
-                        ),
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: FutureBuilder(
+            future: pizzaMenuPageViewModel.getPizza(),
+            builder: (context, snapshot) {
+              var getPizza = snapshot.data;
+              if(snapshot.connectionState  == ConnectionState.waiting){
+                return Center(child: CircularProgressIndicator());
+              }else if(snapshot.hasError){
+                return PizzaError(informationModel: InformationModel("Hata" , "Pizzaları getirirken bir hata ile karşılaştık \n ${snapshot.error}" , EInformation.ERROR));
+              } else if(getPizza == null || getPizza.isEmpty){
+                return PizzaError(informationModel: InformationModel("Hata" , "Pizzaları getirirken bir hata ile karşılaştık" , EInformation.ERROR));
+              }else{
+                var colorScheme = Theme.of(context).colorScheme;
+                return Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    ShowPizza(pizzaModel: getPizza),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: FloatingActionButton(
+                        backgroundColor: colorScheme.primary,
+                          onPressed: () => RouteGenerator.route(context,EPageRoute.CART_PAGE.name,[]),
+                          child: Icon(
+                            Icons.shopping_cart,
+                            color: colorScheme.onPrimary,
+                          ),
+                      ),
                     ),
-                  ),
-                ],
-              );
-            }
-          },
+                  ],
+                );
+              }
+            },
+        ),
       ),
     );
   }

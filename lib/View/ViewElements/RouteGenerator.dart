@@ -25,4 +25,7 @@ class RouteGenerator {
 
   static void route(BuildContext context, String name, Object arguments) =>
       Navigator.of(context).pushNamed(name, arguments: arguments);
+
+  static void routeReplacement(BuildContext context, String name, Object arguments) =>
+      Navigator.of(context).pushReplacementNamed(name, arguments: arguments);
 }

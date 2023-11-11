@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/rendering.dart';
-import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaModel.dart';
 import 'package:piztaurantflutter/Service/Json/JsonService.dart';
 
 class PizzaMenuPageViewModel {
@@ -14,6 +14,7 @@ class PizzaMenuPageViewModel {
       for (var element in data) { json.add(PizzaModel.fromJson(element)); }
       return json;
     }catch(e){
+      print(e);
       return [];
     }
   }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import 'package:piztaurantflutter/Model/CartModel/OrderPizzaModel.dart';
@@ -18,10 +19,10 @@ class CartDatabase extends IDatabase<OrderPizzaModel>{
   }
 
   @override
-  void delete(OrderPizzaModel t) {
+  Future delete(OrderPizzaModel t) async {
     if(_cartDatabase == null) throw Exception("Cart database cannot be initialized");
     try{
-      _cartDatabase?.delete(t);
+      await _cartDatabase!.delete(t.key);
     }catch(e){
       throw Exception("Cart database has been error, \n $e");
     }
@@ -31,7 +32,7 @@ class CartDatabase extends IDatabase<OrderPizzaModel>{
   Future<List<OrderPizzaModel>?> getAll() async{
     if(_cartDatabase == null) throw Exception("Cart database cannot be initialized");
     try{
-      return _cartDatabase?.values.toList();
+      return _cartDatabase!.values.toList();
     }catch(e){
       throw Exception("Cart database has been error, \n $e");
     }
@@ -46,11 +47,11 @@ class CartDatabase extends IDatabase<OrderPizzaModel>{
 
   @override
   Future insert(OrderPizzaModel t) async{
-    if(_cartDatabase == null) throw Exception("Cart database cannot be initialized");
+    if(_cartDatabase == null) return throw Exception("Cart database cannot be initialized");
     try{
-      await _cartDatabase?.add(t);
+      await _cartDatabase!.add(t);
     }catch(e){
-      throw Exception("Cart database has been error, \n $e");
+      return throw Exception("Cart database has been error, \n $e");
     }
   }
 

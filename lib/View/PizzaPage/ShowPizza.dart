@@ -5,7 +5,7 @@ import 'package:piztaurantflutter/Enums/EInformation.dart';
 import 'package:piztaurantflutter/Enums/EPageRoute.dart';
 import 'package:piztaurantflutter/Model/CartModel/OrderPizzaModel.dart';
 import 'package:piztaurantflutter/Model/InformationModel.dart';
-import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaModel.dart';
 import 'package:piztaurantflutter/View/ErrorPage/PizzaError.dart';
 import 'package:piztaurantflutter/View/ViewElements/PizTElavatedButton.dart';
 import 'package:piztaurantflutter/View/ViewElements/RouteGenerator.dart';

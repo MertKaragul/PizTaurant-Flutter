@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:piztaurantflutter/Enums/EInformation.dart';
 import 'package:piztaurantflutter/Model/CartModel/OrderPizzaModel.dart';
 import 'package:piztaurantflutter/Model/InformationModel.dart';
-import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/ChoosePizzaPastry.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaSize.dart';
 import 'package:piztaurantflutter/View/ErrorPage/PizzaError.dart';
 import 'package:piztaurantflutter/View/PizzaDetailPage/PizzaDetailPageSelectables.dart';
 import 'package:piztaurantflutter/View/ViewElements/PizTDialog.dart';
@@ -89,6 +91,15 @@ class _PizzaDetailPageState extends State<PizzaDetailPage> {
                         )
                       ],
                     ),
+
+                    Text(
+                      pizzaData?.pizzaModel?.pizzaIngredients ?? "",
+                      style: TextStyle(
+                        color: widget.colorScheme.primary,
+                        fontSize: 15,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                     GestureDetector(
                         onTap: () {
                           showDialog(
@@ -101,9 +112,7 @@ class _PizzaDetailPageState extends State<PizzaDetailPage> {
                                     pizzaSize: [],
                                     defaultPizzaPastry:
                                         pizzaData?.choosePizzaPastry,
-                                    pizzaPastry: pizzaData
-                                            ?.pizzaModel?.choosePizzaPastry ??
-                                        [],
+                                    pizzaPastry: pizzaData?.pizzaModel?.choosePizzaPastry ?? [],
                                     onSelected: (value) {
                                       return PizTElavatedButton(
                                           height: height * .05,

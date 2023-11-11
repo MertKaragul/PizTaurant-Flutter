@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/ChoosePizzaPastry.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaSize.dart';
 
 class PizzaDetailPageSelectables extends StatefulWidget {
   const PizzaDetailPageSelectables({
@@ -91,7 +93,6 @@ class _PizzaDetailPageSelectablesState extends State<PizzaDetailPageSelectables>
         widget.onCanceled(),
         widget.onSelected(_selectedValue)
       ],
-
     );
   }
 }

@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'package:piztaurantflutter/Enums/EInformation.dart';
 import 'package:piztaurantflutter/Model/CartModel/OrderPizzaModel.dart';
 import 'package:piztaurantflutter/Model/InformationModel.dart';
-import 'package:piztaurantflutter/Model/PizzaModel/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/ChoosePizzaPastry.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaModel.dart';
+import 'package:piztaurantflutter/Model/PizzaModels/PizzaSize.dart';
 import 'package:piztaurantflutter/Service/Database/CartDatabase/CartDatabase.dart';
 
 class PizzaDetailPageViewModel{
@@ -29,9 +31,9 @@ class PizzaDetailPageViewModel{
         pizzaPrice = convertPizzaModel.pizzaModel?.pizzaPrice ?? 0.0;
       }
 
-      pizzaModel = convertPizzaModel;
       streamController.add(convertPizzaModel);
       hideButton = false;
+      pizzaModel = convertPizzaModel;
     }catch(e){
       return;
     }

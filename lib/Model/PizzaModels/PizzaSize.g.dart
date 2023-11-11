@@ -1,42 +1,42 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'OrderPizzaModel.dart';
+part of 'PizzaSize.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class OrderPizzaModelAdapter extends TypeAdapter<OrderPizzaModel> {
+class PizzaSizeAdapter extends TypeAdapter<PizzaSize> {
   @override
-  final int typeId = 1;
+  final int typeId = 4;
 
   @override
-  OrderPizzaModel read(BinaryReader reader) {
+  PizzaSize read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-
-    return OrderPizzaModel(
-      fields[0] as PizzaModel?,
-      fields[1] as PizzaSize?,
-      fields[2] as ChoosePizzaPastry?,
+    return PizzaSize(
+      fields[0] as String?,
+      fields[1] as bool?,
+      fields[2] as bool?,
       fields[3] as double?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, OrderPizzaModel obj) {
+  void write(BinaryWriter writer, PizzaSize obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.pizzaModel)
-      ..writeByte(1)
       ..write(obj.pizzaSize)
+      ..writeByte(1)
+      ..write(obj.status)
       ..writeByte(2)
-      ..write(obj.choosePizzaPastry)
+      ..write(obj.defaultSize)
       ..writeByte(3)
       ..write(obj.price);
+
   }
 
   @override
@@ -45,7 +45,7 @@ class OrderPizzaModelAdapter extends TypeAdapter<OrderPizzaModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is OrderPizzaModelAdapter &&
+      other is PizzaSizeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
